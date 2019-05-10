@@ -4,21 +4,19 @@
     "notify": false
   },
   "browserSyncWatchFiles" : [
-    "./css/*.min.css",
-    "./js/*.min.js",
+    "./assets/dist/css/*.min.css",
+    "./assets/dist/js/*.min.js",
     "./**/*.php"
   ],
   "paths" : {
-    "js": "./js",
-    "css": "./css",
-    "img": "./img",
-		"imgsrc": "./src/img",
-    "sass": "./sass",
+    "js": "./assets/dist/js",
+    "css": "./assets/dist/css",
+    "sass": "./assets/src/sass",
+    "img": "./assets/images",
     "node": "./node_modules/",
     "bower": "./bower_components/",
-    "dev": "./src",
-    "dist": "./dist",
-    "distprod": "./dist-product",
-    "vendor": ""
+    "dev": "./assets/src",
+    "dist": "./assets/dist",
+    "vendor": "./assets/vendor"
   }
 }
