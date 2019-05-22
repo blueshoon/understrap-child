@@ -1,0 +1,15 @@
+#don't track src files pulled in from node modules
+assets/fonts/*wesome*
+assets/vendor
+
+# don't track the compiled CSS & JS
+dist/
+
+.sass-cache
+bower_components
+node_modules
+understrap.zip
+dist
+dist-product
+npm-debug.log
+/vendor/
