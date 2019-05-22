@@ -1,0 +1,24 @@
+{
+  "browserSyncOptions" : {
+    "proxy": "localhost/wordpress/",
+    "notify": false
+  },
+  "browserSyncWatchFiles" : [
+    "./wp-content/themes/understrap-child/assets/dist/css/*.min.css",
+    "./wp-content/themes/understrap-child/assets/dist/js/*.min.js",
+    "./wp-content/themes/understrap-child/**/*.php"
+  ],
+  "paths" : {
+    "js": "./wp-content/themes/understrap-child/assets/dist/js",
+    "css": "./wp-content/themes/understrap-child/assets/dist/css",
+    "sass": "./wp-content/themes/understrap-child/assets/src/sass",
+    "img": "./wp-content/themes/understrap-child/assets/images",
+    "node": "./node_modules/",
+    "bower": "./bower_components/",
+    "dev": "./wp-content/themes/understrap-child/assets/src",
+    "dist": "./wp-content/themes/understrap-child/assets/dist",
+    "vendor": "./wp-content/themes/understrap-child/assets/vendor",
+    "plugins": "./wp-content/plugins",
+    "theme": "./wp-content/themes/understrap-child"
+  }
+}

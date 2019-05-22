@@ -1,12 +1,14 @@
 // Defining requirements
-var gulp = require( 'gulp' );
-var sass = require( 'gulp-sass' );
-var concat = require( 'gulp-concat' );
-var uglify = require( 'gulp-uglify' );
-var sourcemaps = require( 'gulp-sourcemaps' );
-var browserSync = require( 'browser-sync' ).create();
-var del = require( 'del' );
 var autoprefixer = require( 'gulp-autoprefixer' );
+var babel = require('gulp-babel');
+var browserSync = require( 'browser-sync' ).create();
+var concat = require( 'gulp-concat' );
+var del = require( 'del' );
+var gulp = require( 'gulp' );
+var rename = require('gulp-rename');
+var sass = require( 'gulp-sass' );
+var sourcemaps = require( 'gulp-sourcemaps' );
+var uglify = require( 'gulp-uglify' );
 
 // Configuration file to keep your code DRY
 var cfg = require( './gulpconfig.json' );
@@ -34,7 +36,7 @@ gulp.task( 'sassDev', function() {
 // gulp sass
 // Compiles SCSS files in CSS
 gulp.task( 'sass', function() {
-    var stream = gulp.src( `${paths.sass}/*.scss` )
+    var stream = gulp.src( `${paths.sass}/child-theme.scss` )
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(autoprefixer({
             browsers: ['> 1%','last 5 versions'],
@@ -45,17 +47,32 @@ gulp.task( 'sass', function() {
     return stream;
 });
 
+/* Function to build processed css file for admin */
+gulp.task( 'adminsass', function() {
+    var stream = gulp.src( `${paths.sass}/custom-editor-style.scss` )
+		.pipe(sass().on('error', sass.logError))
+		.pipe(autoprefixer({
+            browsers: ['> 1%'],
+            cascade: false,
+			grid: true
+        }))
+		.pipe(rename('blocks.editor.build.css'))
+        .pipe(gulp.dest(`${paths.plugins}/understrap-blocks/blocks/dist`));
+    return stream;
+});
+
 // Run:
 // gulp watch
 // Starts watcher. Watcher runs gulp sass task on changes
 gulp.task( 'watch', function() {
     gulp.watch( `${paths.sass}/**/*.scss`, gulp.series('stylesDev') );
     gulp.watch( [`${paths.dev}/js/**/*.js`, `${paths.vendor}/js/**/*.js`], gulp.series('scripts') );
+    gulp.watch( `${paths.plugins}/understrap-blocks/blocks/src/**/*.js`, gulp.series('pluginScripts') );
 });
 
 // gulp style tasks
-gulp.task( 'stylesDev', gulp.series( 'sassDev' ));
-gulp.task( 'styles', gulp.series( 'sass' ));
+gulp.task( 'stylesDev', gulp.series( 'sassDev', 'adminsass' ));
+gulp.task( 'styles', gulp.series( 'sass', 'adminsass' ));
 
 // Run:
 // gulp browser-sync
@@ -96,6 +113,17 @@ gulp.task( 'scripts', function() {
     .pipe( gulp.dest( paths.js ) );
 });
 
+
+gulp.task( 'pluginScripts', function() {
+    return gulp.src([`${paths.plugins}/understrap-blocks/blocks/src/block/whitelist.js`])
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))
+        .pipe(uglify({mangle: false}))
+        .pipe(rename('blocks.build.js'))
+		.pipe(gulp.dest(`${paths.plugins}/understrap-blocks/blocks/dist`));
+});
+
 // Run:
 // gulp watch-bs
 // Starts watcher with browser-sync. Browser-sync reloads page automatically on your browser
@@ -121,7 +149,7 @@ gulp.task( 'copy-assets', function() {
 
 // Copy all Font Awesome Fonts
     gulp.src( `${paths.node}font-awesome/fonts/**/*.{ttf,woff,woff2,eot,svg}` )
-        .pipe( gulp.dest( './assets/fonts' ) );
+        .pipe( gulp.dest( `${paths.theme}/assets/fonts` ) );
 
 // Copy all Font Awesome SCSS files
     gulp.src( `${paths.node}font-awesome/scss/*.scss` )
@@ -140,6 +168,6 @@ gulp.task( 'clean-vendor-assets', function() {
 });
 
 //build for development
-gulp.task( 'build-dev', gulp.series( 'stylesDev', 'scripts' ));
+gulp.task( 'build-dev', gulp.series( 'stylesDev', 'scripts', 'pluginScripts' ));
 //build for production
-gulp.task( 'build', gulp.series( 'styles', 'scripts' ));
+gulp.task( 'build', gulp.series( 'styles', 'scripts', 'pluginScripts' ));
