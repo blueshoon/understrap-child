@@ -1,5 +1,7 @@
 # Check for required codeship environment variables and make sure they are setup
 : ${WPE_INSTALL_PROD?"WPE_INSTALL_PROD Missing"}   # subdomain for wpengine production install
+#: ${WPE_INSTALL_STAGING?"WPE_INSTALL_STAGING Missing"}   # subdomain for wpengine staging install - uncomment this line if using a staging site
+#: ${WPE_INSTALL_DEV?"WPE_INSTALL_DEV Missing"}   # subdomain for wpengine development install - uncomment this line if using a development site
 : ${REPO_NAME?"REPO_NAME Missing"}       # repo name (name of the repo, duh)
 
 # In WP Engine's multi-environment setup, we'll target each instance based on branch with variables to designate them individually.
@@ -9,9 +11,9 @@ then
     repo=production
 fi
 
-if [[ "$CI_BRANCH" == "staging" && -n "$WPE_INSTALL_STAGE" ]]
+if [[ "$CI_BRANCH" == "staging" && -n "$WPE_INSTALL_STAGING" ]]
 then
-    target_wpe_install=${WPE_INSTALL_STAGE}
+    target_wpe_install=${WPE_INSTALL_STAGING}
     repo=production
 fi
 
