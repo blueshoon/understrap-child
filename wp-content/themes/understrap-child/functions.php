@@ -32,5 +32,9 @@ function add_child_theme_textdomain() {
 }
 add_action( 'after_setup_theme', 'add_child_theme_textdomain' );
 
-//blocks for gutenberg
+/*
+blocks for gutenberg
+requires Advanced Custom Fields Pro
+If not using ACF, remove this line
+*/
 require_once('blocks/register-blocks.php');

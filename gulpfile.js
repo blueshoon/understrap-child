@@ -159,6 +159,10 @@ gulp.task( 'copy-assets', function() {
     gulp.src( `${paths.node}popper.js/dist/umd/popper.js` )
         .pipe( gulp.dest( `${paths.vendor}/js` ) );
 
+// Copy Parent Theme files
+    gulp.src( `${paths.node}understrap/**` )
+        .pipe( gulp.dest( `${paths.themes}/understrap` ) );
+
     return stream;
 });
 

@@ -91,6 +91,5 @@ wp-content/plugins/understrap-blocks/blocks/dist
 
 # track these mu-plugins, plugins, and themes
 # add your own entries here
-!wp-content/themes/understrap/
 !wp-content/themes/understrap-child/
 !wp-content/plugins/understrap-blocks/

@@ -19,6 +19,7 @@
     "dist": "./wp-content/themes/understrap-child/assets/dist",
     "vendor": "./wp-content/themes/understrap-child/assets/vendor",
     "plugins": "./wp-content/plugins",
+    "themes": "./wp-content/themes",
     "theme": "./wp-content/themes/understrap-child"
   }
 }

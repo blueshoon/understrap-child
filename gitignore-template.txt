@@ -7,6 +7,7 @@
 Thumbs.db
 
 #build and deploy files
+bower.json
 composer.json
 gulpconfig.json
 gulpfile.js
@@ -16,6 +17,8 @@ node_modules
 wpengine-codeship-ci/
 
 #source files
+wp-content/themes/understrap/sass
+wp-content/themes/understrap/src
 wp-content/themes/understrap-child/assets/src
 wp-content/themes/understrap-child/assets/vendor
 wp-content/plugins/understrap-blocks/blocks/src
