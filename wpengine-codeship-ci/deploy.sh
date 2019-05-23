@@ -28,7 +28,13 @@ npm install
 gulp build
 
 # Stage, commit, and push to wpengine repo
-git remote add ${repo} git@git.wpengine.com:${repo}/${target_wpe_install}.git
+rm -rf .git
+git init
+rm -rf .gitignore
+rm -rf ./wp-content/themes/understrap-child/.gitignore
+mv gitignore-template.txt .gitignoregit
+
+remote add ${repo} git@git.wpengine.com:${repo}/${target_wpe_install}.git
 
 git config --global user.email CI_COMMITTER_EMAIL
 git config --global user.name CI_COMMITTER_NAME
