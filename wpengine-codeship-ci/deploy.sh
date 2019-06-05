@@ -34,7 +34,7 @@ rm -rf .gitignore
 rm -rf ./wp-content/themes/understrap-child/.gitignore
 mv gitignore-template.txt .gitignore
 
-remote add ${repo} git@git.wpengine.com:${repo}/${target_wpe_install}.git
+git remote add ${repo} git@git.wpengine.com:${repo}/${target_wpe_install}.git
 
 git config --global user.email CI_COMMITTER_EMAIL
 git config --global user.name CI_COMMITTER_NAME
