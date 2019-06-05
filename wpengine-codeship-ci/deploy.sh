@@ -32,7 +32,7 @@ rm -rf .git
 git init
 rm -rf .gitignore
 rm -rf ./wp-content/themes/understrap-child/.gitignore
-mv gitignore-template.txt .gitignoregit
+mv gitignore-template.txt .gitignore
 
 remote add ${repo} git@git.wpengine.com:${repo}/${target_wpe_install}.git
 
