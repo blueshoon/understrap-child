@@ -41,7 +41,7 @@ The variables below are not required, but are utilized to work with WP Engine's 
 
 |Variable|Description|Required|
 | ------------- | ------------- | ------------- |
-|**WPE_INSTALL_STAGING**|The subdomain from WP Engine install "Staging"||
+|**WPE_INSTALL_STAGE**|The subdomain from WP Engine install "Staging"||
 |**WPE_INSTALL_DEV**|The subdomain from WP Engine install "Development"||
 
 ## Deployment Instructions

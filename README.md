@@ -70,7 +70,7 @@ To complete this set up, the following Environment variables need to be added to
 - `REPO_NAME` (the name of the repo in git)
 
 Optionally, you can add the following variables for deploying to staging and development sites:
-- `WPE_INSTALL_STAGING`
+- `WPE_INSTALL_STAGE`
 - `WPE_INSTALL_DEV`
 
 ### Deploy Script
