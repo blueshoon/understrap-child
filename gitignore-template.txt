@@ -5,6 +5,7 @@
 *.bak
 *.swp
 Thumbs.db
+/README.md
 
 #build and deploy files
 bower.json
