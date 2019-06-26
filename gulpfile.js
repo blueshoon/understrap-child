@@ -6,6 +6,7 @@ var concat = require( 'gulp-concat' );
 var del = require( 'del' );
 var gulp = require( 'gulp' );
 var rename = require('gulp-rename');
+var rev = require('gulp-rev');
 var sass = require( 'gulp-sass' );
 var sourcemaps = require( 'gulp-sourcemaps' );
 var uglify = require( 'gulp-uglify' );
@@ -28,7 +29,13 @@ gulp.task( 'sassDev', function() {
 			grid: true
         }))
         .pipe( sourcemaps.write( './' ) )
+        .pipe(rev())
         .pipe( gulp.dest( paths.css ) )
+        .pipe(rev.manifest(paths.dist + '/rev-manifest.json', {
+            base: paths.dist,
+            merge: true
+        }))
+        .pipe(gulp.dest(paths.dist));
     return stream;
 });
 
@@ -43,8 +50,14 @@ gulp.task( 'sass', function() {
             cascade: false,
 			grid: true
         }))
+        .pipe(rev())
         .pipe( gulp.dest( paths.css ) )
-    return stream;
+        .pipe(rev.manifest(paths.dist + '/rev-manifest.json', {
+            base: paths.dist,
+            merge: true
+        }))
+        .pipe(gulp.dest(paths.dist));
+        return stream;
 });
 
 /* Function to build processed css file for admin */
@@ -110,7 +123,13 @@ gulp.task( 'scripts', function() {
   return gulp.src( scripts, { allowEmpty: true } )
     .pipe( concat( 'child-theme.js' ) )
     .pipe( uglify() )
-    .pipe( gulp.dest( paths.js ) );
+    .pipe(rev())
+    .pipe( gulp.dest( paths.js ) )
+    .pipe(rev.manifest(paths.dist + '/rev-manifest.json', {
+        base: paths.dist,
+        merge: true
+    }))
+    .pipe(gulp.dest(paths.dist));
 });
 
 
