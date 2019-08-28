@@ -190,7 +190,19 @@ gulp.task( 'clean-vendor-assets', function() {
   return del( [`${paths.vendor}/js/bootstrap4/**`, `${paths.vendor}/sass/bootstrap4/**`, './assets/fonts/*wesome*.{ttf,woff,woff2,eot,svg}', `${paths.vendor}/sass/fontawesome/**`, `${paths.vendor}/js/popper.js`] );
 });
 
+gulp.task('dist-clean', function() {
+    return del([paths.dist + '/**/*']);
+});
+
+gulp.task('dist-clean-css', function() {
+    return del([paths.dist + '/css/*']);
+});
+
+gulp.task('dist-clean-js', function() {
+    return del([paths.dist + '/js/*']);
+});
+
 //build for development
-gulp.task( 'build-dev', gulp.series( 'stylesDev', 'scripts', 'pluginScripts' ));
+gulp.task( 'build-dev', gulp.series( 'dist-clean', 'stylesDev', 'scripts', 'pluginScripts' ));
 //build for production
-gulp.task( 'build', gulp.series( 'styles', 'scripts', 'pluginScripts' ));
+gulp.task( 'build', gulp.series( 'dist-clean', 'styles', 'scripts', 'pluginScripts' ));
