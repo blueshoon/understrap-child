@@ -24,7 +24,6 @@ gulp.task( 'sassDev', function() {
         .pipe( sourcemaps.init( { loadMaps: true } ) )
 		.pipe(sass().on('error', sass.logError))
 		.pipe(autoprefixer({
-            browsers: ['> 1%','last 5 versions'],
             cascade: false,
 			grid: true
         }))
@@ -46,7 +45,6 @@ gulp.task( 'sass', function() {
     var stream = gulp.src( `${paths.sass}/child-theme.scss` )
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(autoprefixer({
-            browsers: ['> 1%','last 5 versions'],
             cascade: false,
 			grid: true
         }))
@@ -65,7 +63,6 @@ gulp.task( 'adminsass', function() {
     var stream = gulp.src( `${paths.sass}/custom-editor-style.scss` )
 		.pipe(sass().on('error', sass.logError))
 		.pipe(autoprefixer({
-            browsers: ['> 1%'],
             cascade: false,
 			grid: true
         }))

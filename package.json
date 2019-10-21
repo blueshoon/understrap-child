@@ -41,5 +41,9 @@
     "gulp-uglify": "^3.0.2",
     "popper.js": "~1.15.0",
     "understrap": "0.9.1"
-  }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 5 versions"
+  ]
 }
