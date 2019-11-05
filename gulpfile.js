@@ -75,8 +75,8 @@ gulp.task( 'adminsass', function() {
 // gulp watch
 // Starts watcher. Watcher runs gulp sass task on changes
 gulp.task( 'watch', function() {
-    gulp.watch( `${paths.sass}/**/*.scss`, gulp.series('stylesDev') );
-    gulp.watch( [`${paths.dev}/js/**/*.js`, `${paths.vendor}/js/**/*.js`], gulp.series('scripts') );
+    gulp.watch( `${paths.sass}/**/*.scss`, gulp.series('dist-clean-css', 'stylesDev') );
+    gulp.watch( [`${paths.dev}/js/**/*.js`, `${paths.vendor}/js/**/*.js`], gulp.series('dist-clean-js', 'scripts') );
     gulp.watch( `${paths.plugins}/understrap-blocks/blocks/src/**/*.js`, gulp.series('pluginScripts') );
 });
 
