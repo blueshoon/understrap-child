@@ -54,3 +54,73 @@ requires Advanced Custom Fields Pro
 If not using ACF, remove this line
 */
 require_once('blocks/register-blocks.php');
+
+/*
+Custom posts
+ */
+//require_once('inc/custom-posts.php');
+
+/* Performance Improvements */
+require_once('inc/wp-performance.php');
+
+
+//new image sizes for responsive images
+add_image_size( 'midsize', 1440, 900 );
+add_image_size( 'fullsize', 1920, 1080 );
+
+//new max width for image srcset
+function understrap_srcset_max($max_width) {
+    return 2880;
+}
+add_filter('max_srcset_image_width', 'understrap_srcset_max');
+
+
+// Filter the output of logo - set alt to homepage
+add_filter( 'get_custom_logo', 'understrap_child_custom_logo' );
+function understrap_child_custom_logo() {
+    $custom_logo_id = get_theme_mod( 'custom_logo' );
+    $html = sprintf( '<a href="%1$s" class="custom-logo-link navbar-brand" rel="home">%2$s</a>',
+            get_option('siteurl'),
+            wp_get_attachment_image( $custom_logo_id, 'full', false, array(
+				'class'    => 'custom-logo',
+				'alt' => 'Homepage'
+            ) )
+        );
+    return $html;
+}
+
+
+//custom editor styles
+function understrap_child_tiny_mce_before_init( $settings ) {
+	$style_formats = array(
+		array(
+			'title'    => 'Uppercase',
+            'inline' => 'span',
+            'classes' => 'text-uppercase'
+        ),
+        array(
+			'title'    => 'Primary Text',
+            'inline' => 'span',
+            'classes' => 'text-primary'
+        ),
+        array(
+			'title'    => 'Primary Button',
+            'selector' => 'a, input, button',
+            'classes' => 'btn btn-sm btn-primary'
+        )
+	);
+	if ( isset( $settings['style_formats'] ) ) {
+		$orig_style_formats = json_decode( $settings['style_formats'], true );
+		$style_formats      = array_merge( $orig_style_formats, $style_formats );
+	}
+
+	$settings['style_formats'] = json_encode( $style_formats );
+	return $settings;
+}
+add_filter( 'tiny_mce_before_init', 'understrap_child_tiny_mce_before_init' );
+
+
+/* set priority of Yoast Meta boxes to low
+   Uncomment if using Yoast SEO Plugin
+/*
+//add_filter( 'wpseo_metabox_prio', function() { return 'low';});
