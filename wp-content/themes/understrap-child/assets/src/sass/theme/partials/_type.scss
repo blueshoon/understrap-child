@@ -1,0 +1,36 @@
+body, html {
+    /* Set default size to 10
+       All rems can now be based on 10 instead of 16
+       1.5rem = 15px vs 1.5rem = 24px
+       (easier math!)
+    */
+	font-size: .625rem;
+}
+
+.text-serif {
+    font-family: $font-family-serif;
+}
+
+.text-sans-serif {
+    font-family: $font-family-sans-serif;
+}
+
+.text-md {
+    font-size: $font-size-md;
+}
+.text-sm {
+    font-size: $font-size-sm;
+}
+
+.text-underline {
+    text-decoration: underline;
+}
+
+.sr-only-focusable {
+    &.skip-link {
+        &:focus {
+            position: absolute;
+            z-index: 1;
+        }
+    }
+}
