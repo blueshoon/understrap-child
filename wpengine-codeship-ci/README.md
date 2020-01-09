@@ -56,6 +56,13 @@ chmod 555 ./wpengine-codeship-ci/deploy.sh
 ./wpengine-codeship-ci/deploy.sh
 ```
 
+The version of node-sass that gulp-sass references currently errors out during builds on versions of Node > 10.  To work around this for now, in Codeship Tests add the following to **Setup Commands**:
+
+```
+nvm install 10
+npm rebuild node-sass
+```
+
 ## Useful Notes
 
 * WP Engine's .git push can almost be considered a "middle man" between your repo and what is actually displayed to your visitors within the root web directory of your website. After the files are .git pushed to your production, staging, or develop remote branches they are then synced to the appropriate environment's webroot.
