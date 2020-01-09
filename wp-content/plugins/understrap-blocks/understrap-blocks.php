@@ -24,11 +24,12 @@ function register_understrap_gutenberg_blocks() {
   );
 
   // Register our block's webfonts
-  wp_enqueue_style(
+/*  wp_enqueue_style(
     'gutenberg-card-block-font-style',
     'https://fonts.googleapis.com/css?family=Karla:400,700',
     array( 'wp-edit-blocks' )
   );
+*/
 
 }
 add_action( 'enqueue_block_editor_assets', 'register_understrap_gutenberg_blocks' );

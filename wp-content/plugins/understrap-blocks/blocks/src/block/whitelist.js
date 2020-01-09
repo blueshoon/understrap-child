@@ -2,6 +2,7 @@ var allowedBlocks = [
     'core/code',
     'core/image',
     'core/freeform',
+    'core/html',
     'core/paragraph',
     'core/shortcode',
     'core/table',
