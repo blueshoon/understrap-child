@@ -25,9 +25,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<!-- ******************* The Navbar Area ******************* -->
     <header role="banner" id="banner" class="fixed-top">
 
-		<a class="skip-link sr-only sr-only-focusable" href="#main"><?php esc_html_e( 'Skip to content', 'understrap' ); ?></a>
+		<a class="skip-link sr-only sr-only-focusable btn btn-sm btn-primary" href="#main"><?php esc_html_e( 'Skip to content', 'understrap' ); ?></a>
 
-		<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+		<nav class="navbar navbar-expand-md navbar-dark bg-primary" aria-label="Primary Site">
 			<!-- Your site title as branding in the menu -->
 			<?php if ( ! has_custom_logo() ) { ?>
 
@@ -45,7 +45,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				the_custom_logo();
 			} ?><!-- end custom logo -->
 
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation', 'understrap' ); ?>">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#primaryNav" aria-controls="primaryNav" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation', 'understrap' ); ?>">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
