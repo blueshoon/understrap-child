@@ -25,6 +25,11 @@ function viewport() {
 	return { width : e[ a+'Width' ], height : e[ a+'Height' ] };
 };
 
+// Detect request animation frame
+var pageScroll = window.requestAnimationFrame ||
+    // IE Fallback
+    function(callback){ window.setTimeout(callback, 1000/60)};
+
 // Helper function from: http://stackoverflow.com/a/7557433/274826
 function isElementInViewport(el) {
     // special bonus for those using jQuery
